@@ -1,0 +1,79 @@
+package com.hx.connect;
+import java.sql.*;
+import java.util.Scanner;
+public class Departure_Rate {
+
+	/**
+	 * @author hw
+	 * 2016-10-20
+	 */
+	/*******************************************
+		getPsgNum()函数查找ri_departure_psg表中psg_name=旅客姓名且 psg_noshow=0的总数量
+	 ***********************************************/
+    public float getPsgNum1(String psg_name){
+    	String sql = "SELECT psg_noshow FROM ri_departure_psg where psg_name='" + psg_name+ "'";
+    	//String sql = "SELECT * FROM (SELECT * FROM ri_departure_psg LIMIT 0,25000) AS t1 where psg_name='" + psg_name+ "'";
+    	ConnDB conn=new ConnDB();
+		ResultSet rs=conn.executeQuery(sql);
+		float s=0;
+    	try {
+    		while(rs.next()){
+    			String str=rs.getString("psg_noshow");
+    			int str1=Integer.parseInt(str);
+//    			System.out.println("str1="+str1);   			
+    			if(str1==0){
+    				s=s+1;
+    			}
+			}
+    		System.out.println("乘客"+psg_name+"的离港总数为："+s);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		conn.close();
+		return s;//返回查询结果
+		
+    }
+    public float getPsgNum2(String psg_name){
+    	String sql ="SELECT * FROM ri_ticket where psgname='" + psg_name+ "'";
+    	//String sql = "SELECT * FROM (SELECT * FROM ri_ticket limit 0,25000)as t1 where psgname='" + psg_name+ "'";
+    	ConnDB conn=new ConnDB();
+		ResultSet rs=conn.executeQuery(sql);
+		float m=0;
+		if(rs.equals(null)){
+			 m=0;
+		}
+		else{
+	    	try {
+	    		while(rs.next()){
+	    			m=m+1;
+				}
+	    		
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		conn.close();
+		System.out.println("乘客"+psg_name+"的出票总数为："+m);
+		return m;//返回查询结果
+    }
+	/*public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		Scanner input=new Scanner(System.in);
+	 	String psg_name=input.nextLine();
+		Departure_Rate psgnum=new Departure_Rate();
+		float a,b;
+		String name = null;
+		a=psgnum.getPsgNum1(name);
+		b=psgnum.getPsgNum2(name);
+		if(b==0){
+				System.out.println("ri_ticket中没有查到"+name+"的信息");
+			}
+		else{
+			System.out.println("出行率为:"+a/b);
+		}
+	}
+*/
+}

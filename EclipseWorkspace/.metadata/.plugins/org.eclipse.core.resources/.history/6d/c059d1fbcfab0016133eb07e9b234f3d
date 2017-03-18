@@ -1,0 +1,71 @@
+package com.hx.connect;
+
+import java.sql.*;
+import java.util.Scanner;
+
+public class Ticket_CancleRate {
+
+	/**
+	 * @author hw
+	 * 2016-10-20
+	 */
+	/*******************************************
+		getPsgNum()函数查找ri_refund_viod_info表中order_gds=1A该代理的总数量
+	 ***********************************************/
+    public float getAgentNum1(String agent){
+    	String sql = "SELECT id FROM  ri_refund_void_info where order_agent='" +agent+ "'";
+    	//String sql = "SELECT * FROM (SELECT * FROM ri_refund_void_info LIMIT 0,100000)as t1 where order_agent='" +gds+ "'";
+    	ConnDB conn=new ConnDB();
+		ResultSet rs=conn.executeQuery(sql);
+		float a=0;
+    	try {
+    	
+    		while(rs.next()){
+    				a=a+1;
+			}
+    		//System.out.println(s);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		conn.close();
+		System.out.println("代理"+agent+"退票总数为:"+a);
+		return a;//返回查询结果	
+    }
+    public float getAgentNum2(String agent){
+    	
+    	//String sql = "SELECT * FROM (SELECT * from ri_ticket LIMIT 0,100000)as t1 where issue_gds='" + gds+ "'";
+    	String sql ="SELECT * FROM ri_ticket where issue_agent='" + agent+ "'";
+    	ConnDB conn=new ConnDB();
+    	float b=0;
+		ResultSet rs=conn.executeQuery(sql);
+		
+	
+	    try {
+	    	
+	    	while(rs.next()){
+	    		b=b+1;
+	    	}	
+		} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		conn.close();
+	
+		System.out.println("代理"+agent+"出票总数为："+b);
+		return b;//返回查询结果
+    }
+	/*public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		Scanner input=new Scanner(System.in);
+	 	String gds=input.nextLine();
+	 	Ticket_CancleRate agentNum=new Ticket_CancleRate ();
+		float a,b;
+		String agent=null;
+		a=agentNum.getAgentNum1(agent);
+		b=agentNum.getAgentNum2(agent);
+		System.out.println("退票率为:"+a/b);
+	}*/
+
+}

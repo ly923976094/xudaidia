@@ -1,0 +1,53 @@
+package com.hx.connect;
+
+import java.sql.ResultSet;
+
+import java.sql.SQLException;
+
+public class Order_CancelRate {
+	public float getPsgNum3(String order_agent) {
+		float a = 0;
+		float b = 0;
+		float k = 0;
+		String sql = "SELECT  *  FROM ana_pnr where agent='" + order_agent + "'";
+		// String sql = "SELECT * FROM ana_pnr LIMIT 0,100";
+		ConnDB conn = new ConnDB();
+		ResultSet rs = conn.executeQuery(sql);
+
+		try {
+			 System.out.println("agent="+order_agent);
+			while (rs.next()) {
+//				int is_canceled=0;
+				String str = rs.getString("is_canceled");
+				// String str2=rs.getString("agent");
+			
+				int str1 = Integer.parseInt(str);
+				// System.out.println("str="+str);
+				if (str1 == 1) {
+					a = a + 1;
+				}
+				b = b + 1;
+				// System.out.println(a/b);
+			}
+			System.out.println("代理" + order_agent + "取消订单总数为：" + a);
+			System.out.println("代理" + order_agent + "订单总数为" + b);
+			if (b == 0)
+				k = 0;
+			else {
+				k = a / b;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		conn.close();
+		return k;// 返回查询结果
+	}
+	/*
+	 * public static void main(String[] args) { // TODO Auto-generated method
+	 * stub float g; Scanner input=new Scanner(System.in); String
+	 * order_agent=input.nextLine(); Order_CancelRate cancelrate=new
+	 * Order_CancelRate(); g=cancelrate.getPsgNum3(order_agent);
+	 * //cancelrate.getPsgNum3(); System.out.println("订单取消率为:"+g); }
+	 */
+}

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
+	<classpathentry kind="lib" path="E:/install/EclipseWorkspace/jaxen-1.0-FCS/jaxen-core.jar"/>
+	<classpathentry kind="lib" path="E:/install/EclipseWorkspace/jaxen-1.0-FCS/jaxen-dom.jar"/>
+	<classpathentry kind="lib" path="E:/install/EclipseWorkspace/jaxen-1.0-FCS/jaxen-dom4j.jar"/>
+	<classpathentry kind="lib" path="E:/install/EclipseWorkspace/jaxen-1.0-FCS/jaxen-exml.jar"/>
+	<classpathentry kind="lib" path="E:/install/EclipseWorkspace/jaxen-1.0-FCS/jaxen-full.jar"/>
+	<classpathentry kind="lib" path="E:/install/EclipseWorkspace/jaxen-1.0-FCS/jaxen-jdom.jar"/>
+	<classpathentry kind="lib" path="E:/install/EclipseWorkspace/dom4j-1.6.1/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="E:/install/EclipseWorkspace/sax2r2.jar"/>
+	<classpathentry kind="lib" path="E:/install/EclipseWorkspace/saxpath.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
